@@ -16,7 +16,14 @@ function loadFilters(c: Criteria): FilterState {
   const base = defaultFilters(c);
   try {
     const raw = localStorage.getItem(FILTERS_KEY);
-    if (raw) return { ...base, ...(JSON.parse(raw) as Partial<FilterState>) };
+    if (raw) {
+      const { knownAreas, ...saved } = JSON.parse(raw) as Partial<FilterState> & { knownAreas?: string[] };
+      const f = { ...base, ...saved };
+      // Areas added since the filters were saved start ticked. Older saves didn't record
+      // which areas existed, so every unticked area gets ticked once.
+      const added = Object.keys(c.areas).filter((k) => !(knownAreas ?? f.areas).includes(k) && !f.areas.includes(k));
+      return added.length ? { ...f, areas: [...f.areas, ...added] } : f;
+    }
   } catch {
     /* storage unavailable */
   }
@@ -66,11 +73,11 @@ export default function App() {
   useEffect(() => {
     if (!filters) return;
     try {
-      localStorage.setItem(FILTERS_KEY, JSON.stringify(filters));
+      localStorage.setItem(FILTERS_KEY, JSON.stringify({ ...filters, knownAreas: criteria ? Object.keys(criteria.areas) : undefined }));
     } catch {
       /* ignore */
     }
-  }, [filters]);
+  }, [filters, criteria]);
 
   const scores = useMemo(() => {
     const m = new Map<string, Score>();
