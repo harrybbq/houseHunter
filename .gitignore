@@ -1,0 +1,5 @@
+node_modules
+dist
+# Personal data — local only
+data/listings.json
+research/fixtures/

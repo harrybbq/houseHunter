@@ -1,0 +1,75 @@
+{
+  "maxPrice": 225000,
+  "minBeds": 2,
+  "minSqftHard": 725,
+  "targetSqft": 850,
+  "poorSqft": 700,
+  "bed2MinWidthM": 2.4,
+  "allowSecondFloorException": true,
+  "allowWindowlessException": false,
+  "requireTenement": false,
+  "excludeKeywords": [
+    "auction",
+    "tenanted",
+    "sitting tenant",
+    "tenant in situ",
+    "cash buyers only",
+    "cash buyers",
+    "retirement",
+    "over 55",
+    "over 60",
+    "shared ownership",
+    "shared equity",
+    "buy to let",
+    "buy-to-let",
+    "investment opportunity"
+  ],
+  "areas": {
+    "southside": {
+      "name": "Queen's Park / Southside",
+      "outcodes": ["G41", "G42"],
+      "rank": 1,
+      "notes": "Battlefield, Shawlands, Strathbungo, Pollokshields, Crosshill, Mount Florida"
+    },
+    "dennistoun": {
+      "name": "Dennistoun",
+      "outcodes": ["G31"],
+      "rank": 2,
+      "notes": "The Drives (Circus, Craigpark, Onslow, Finlay) are premium"
+    },
+    "partick": {
+      "name": "Partick",
+      "outcodes": ["G11"],
+      "rank": 3,
+      "notes": "Often small (600-720 sq ft) at this price"
+    },
+    "hillhead": {
+      "name": "Hillhead",
+      "outcodes": ["G12"],
+      "rank": 4,
+      "notes": "Tenements usually over budget"
+    },
+    "kelvindale": {
+      "name": "Kelvindale",
+      "outcodes": ["G12"],
+      "rank": 5,
+      "notes": "Mostly 1930s / purpose-built - check tenement status"
+    }
+  },
+  "weights": {
+    "kitchen": 25,
+    "floor": 15,
+    "tenement": 15,
+    "size": 15,
+    "bed2": 10,
+    "area": 10,
+    "price": 10
+  },
+  "bonuses": {
+    "walkInShower": 3,
+    "garden": 2,
+    "epcCOrBetter": 1,
+    "ctBandBC": 1,
+    "bay": 1
+  }
+}
