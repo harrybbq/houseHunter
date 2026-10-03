@@ -351,6 +351,10 @@ export function parsePrice(s: unknown): number | null {
 // ---------------------------------------------------------------- area
 
 const KELVINDALE_WORDS = /\b(?:kelvindale|kelvinside|cleveden)\b/i;
+// Streets that sit squarely in one area, for addresses that don't name it.
+const SHAWLANDS_STREETS = /\b(?:kilmarnock road|moss-?side road|skirving street|deanston drive|minard road|mount stuart street)\b/i;
+const POLLOKSHIELDS_STREETS =
+  /\b(?:albert drive|maxwell drive|st\.? andrews? (?:drive|road)|kenmure street|leslie street|herriet street|keir street|darnley street|shields road|terregles avenue|sherbrooke avenue)\b/i;
 
 export function outcodeOf(s: string | null | undefined): string | null {
   if (!s) return null;
@@ -375,11 +379,13 @@ export function areaFor(postcode: string | null, address: string | null, criteri
     ([key, a]) => new RegExp(`\\b${escapeRe(key)}\\b`, 'i').test(addr) || addr.toLowerCase().includes(a.name.toLowerCase()),
   );
   if (named) return named[0];
-  // G12: Kelvindale / Kelvinside / Cleveden streets → kelvindale.
-  if (KELVINDALE_WORDS.test(addr)) {
-    const k = candidates.find(([key]) => key === 'kelvindale');
-    if (k) return k[0];
-  }
+  const pick = (key: string) => candidates.find(([k]) => k === key)?.[0];
+  // G12: Kelvindale / Kelvinside / Cleveden streets, or the G12 0 sector → kelvindale.
+  const g12Sector = `${postcode ?? ''} ${addr}`.toUpperCase().match(/\bG12\s+(\d)[A-Z]{2}\b/)?.[1];
+  if ((KELVINDALE_WORDS.test(addr) || g12Sector === '0') && pick('kelvindale')) return pick('kelvindale')!;
+  // G41: streets that are clearly Shawlands or Pollokshields.
+  if (SHAWLANDS_STREETS.test(addr) && pick('shawlands')) return pick('shawlands')!;
+  if (POLLOKSHIELDS_STREETS.test(addr) && pick('pollokshields')) return pick('pollokshields')!;
   // Otherwise the better-ranked area sharing the outcode (G12 → hillhead).
   candidates.sort((a, b) => a[1].rank - b[1].rank);
   return candidates[0][0];

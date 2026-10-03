@@ -189,6 +189,17 @@ describe('areaFor', () => {
     expect(areaFor('G12', 'Kelvindale Road, Glasgow', criteria)).toBe('kelvindale');
     expect(areaFor('G12 9LY', 'Great George Street, Hillhead', criteria)).toBe('hillhead');
     expect(areaFor('G12', 'Byres Road', criteria)).toBe('hillhead');
+    expect(areaFor('G12 0ED', '1/1, 60 Dorchester Avenue', criteria)).toBe('kelvindale');
+    expect(areaFor(null, 'Ripon Drive, Glasgow, G12 0DT', criteria)).toBe('kelvindale');
+  });
+  it('splits G41 by address and maps G43 to Shawlands', () => {
+    expect(areaFor('G41 3', 'Kilmarnock Road, Glasgow', criteria)).toBe('shawlands');
+    expect(areaFor('G41', 'Flat 1/1, Shawlands, Glasgow', criteria)).toBe('shawlands');
+    expect(areaFor('G43 1AB', 'Pollokshaws Road, Glasgow', criteria)).toBe('shawlands');
+    expect(areaFor('G41 1PD', 'St. Andrews Road, Glasgow, G41', criteria)).toBe('pollokshields');
+    expect(areaFor('G41', 'Albert Drive, Glasgow', criteria)).toBe('pollokshields');
+    expect(areaFor('G41', 'Nithsdale Road, Pollokshields', criteria)).toBe('pollokshields');
+    expect(areaFor('G41', 'Moray Place, Strathbungo', criteria)).toBe('southside');
   });
 });
 

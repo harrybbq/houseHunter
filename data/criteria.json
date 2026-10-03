@@ -27,33 +27,61 @@
   "areas": {
     "southside": {
       "name": "Queen's Park / Southside",
-      "outcodes": ["G41", "G42"],
+      "outcodes": [
+        "G41",
+        "G42"
+      ],
       "rank": 1,
-      "notes": "Battlefield, Shawlands, Strathbungo, Pollokshields, Crosshill, Mount Florida"
+      "notes": "Battlefield, Strathbungo, Crosshill, Mount Florida, Langside"
+    },
+    "shawlands": {
+      "name": "Shawlands",
+      "outcodes": [
+        "G41",
+        "G43"
+      ],
+      "rank": 1,
+      "notes": "Shawlands Cross, Kilmarnock Rd, Moss-side Rd. G43 also covers Pollokshaws / Newlands, so check the street"
+    },
+    "pollokshields": {
+      "name": "Pollokshields",
+      "outcodes": [
+        "G41"
+      ],
+      "rank": 1,
+      "notes": "East (tenements around Albert Dr / Kenmure St) is the target; West is mostly villas"
     },
     "dennistoun": {
       "name": "Dennistoun",
-      "outcodes": ["G31"],
+      "outcodes": [
+        "G31"
+      ],
       "rank": 2,
       "notes": "The Drives (Circus, Craigpark, Onslow, Finlay) are premium"
     },
     "partick": {
       "name": "Partick",
-      "outcodes": ["G11"],
+      "outcodes": [
+        "G11"
+      ],
       "rank": 3,
       "notes": "Often small (600-720 sq ft) at this price"
     },
     "hillhead": {
       "name": "Hillhead",
-      "outcodes": ["G12"],
+      "outcodes": [
+        "G12"
+      ],
       "rank": 4,
       "notes": "Tenements usually over budget"
     },
     "kelvindale": {
       "name": "Kelvindale",
-      "outcodes": ["G12"],
+      "outcodes": [
+        "G12"
+      ],
       "rank": 5,
-      "notes": "Mostly 1930s / purpose-built - check tenement status"
+      "notes": "Includes Kelvinside / Cleveden and all of G12 0. Mostly 1930s / purpose-built - check tenement status"
     }
   },
   "weights": {

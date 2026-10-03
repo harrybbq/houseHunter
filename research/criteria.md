@@ -27,11 +27,14 @@ A first-time buyer taking out a solo mortgage in Glasgow wants a traditional ten
 - **Pattern to watch:** bay-fronted tenements often have a small windowless kitchen off the lounge. Flats with a real dining kitchen that has a window more often have **no** bay.
 
 ## Areas, in order of preference
-1. Queen's Park / Southside: **G41, G42** (Battlefield, Shawlands, Strathbungo, Pollokshields, Crosshill, Mount Florida)
+1. Queen's Park / Southside: **G41, G42** (Battlefield, Strathbungo, Crosshill, Mount Florida, Langside)
+   - Shawlands: **G41, G43**. G43 also covers Pollokshaws and Newlands, so check the street.
+   - Pollokshields: **G41**. East Pollokshields (Albert Dr, Kenmure St) is the tenement stock. West is mostly villas.
+   - All three are ranked equal first.
 2. Dennistoun: **G31**. The "Drives" (Circus, Craigpark, Onslow, Finlay) are premium streets.
 3. Partick: **G11**. Flats are often small (600–720 sq ft) at this price.
 4. Hillhead: **G12**. Tenements are usually over £225k.
-5. Kelvindale: **G12**. Mostly 1930s or purpose-built, so check whether it's a tenement.
+5. Kelvindale: **G12**, including Kelvinside, Cleveden and every G12 0 postcode. Mostly 1930s or purpose-built, so check whether it's a tenement.
 
 ## Benchmarks ("this is what I'm after")
 - **406 Victoria Road 1/2** (Rightmove 93437829): O/O £210k, 1,087 sq ft, dining kitchen 3.91×4.93 m with a window, bay lounge. "Beautiful."
