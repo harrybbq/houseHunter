@@ -137,6 +137,7 @@ textarea { resize: vertical; }
 .top-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; padding-top: 1px; }
 .filters-toggle, .sidebar-close { display: none; }
 .banner { padding: 6px 16px; background: color-mix(in srgb, var(--bad) 12%, var(--surface)); display: flex; gap: 12px; }
+.banner.note { background: var(--surface-2); color: var(--muted); font-size: 12.5px; padding: 4px 16px; }
 
 .layout { flex: 1; display: flex; min-height: 0; }
 .sidebar {

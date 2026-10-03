@@ -60,19 +60,22 @@ export function MapView({ listings, scores, selectedId, panRequest, onSelect }: 
         const pos: [number, number] = [l.lat!, l.lng!];
         return (
           // Leaflet ignores className changes after creation, so remount when tier/selection changes.
+          // className is a direct prop (not in pathOptions) so it is set when the path is created.
           <Fragment key={`${l.id}:${tier}:${isSel}:${l.benchmark}`}>
             {l.benchmark && (
               <CircleMarker
                 center={pos}
                 radius={isSel ? 16 : 13}
                 interactive={false}
-                pathOptions={{ className: 'benchmark-ring', fill: false, weight: 2, dashArray: '3 3' }}
+                className="benchmark-ring"
+                pathOptions={{ fill: false, weight: 2, dashArray: '3 3' }}
               />
             )}
             <CircleMarker
               center={pos}
               radius={isSel ? 10 : 7}
-              pathOptions={{ className: `tier-${tier}${isSel ? ' is-selected' : ''}`, weight: isSel ? 3 : 1.5, fillOpacity: 0.9 }}
+              className={`tier-${tier}${isSel ? ' is-selected' : ''}`}
+              pathOptions={{ weight: isSel ? 3 : 1.5, fillOpacity: 0.9 }}
               eventHandlers={{ click: () => onSelect(l.id) }}
             >
               <Tooltip direction="top" offset={[0, -6]}>

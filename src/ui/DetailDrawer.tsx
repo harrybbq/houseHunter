@@ -20,7 +20,7 @@ interface Props {
   busy: boolean;
   error: string | null;
   onPatch: (patch: Partial<Listing>) => void;
-  onRefresh: () => void;
+  onRefresh?: () => void; // absent in the published copy, which has no server to fetch with
   onDelete: () => void;
   onClose: () => void;
 }
@@ -293,9 +293,11 @@ export function DetailDrawer({ listing: l, score, criteria, busy, error, onPatch
 
         {error && <p className="error">{error}</p>}
         <footer className="drawer-actions">
-          <button className="btn" onClick={onRefresh} disabled={!l.url || busy}>
-            {busy ? 'Refreshing…' : 'Refresh from site'}
-          </button>
+          {onRefresh && (
+            <button className="btn" onClick={onRefresh} disabled={!l.url || busy}>
+              {busy ? 'Refreshing…' : 'Refresh from site'}
+            </button>
+          )}
           <button className="btn danger" onClick={onDelete} disabled={busy}>
             Delete
           </button>

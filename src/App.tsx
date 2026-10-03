@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { Criteria, Listing, Score } from './types';
-import { api, saveListings } from './ui/api';
+import { api, saveListings, STATIC } from './ui/api';
 import { RefreshAll } from './ui/RefreshAll';
 import { safeScore } from './ui/format';
 import { Filters, applyFilters, defaultFilters, type FilterState } from './ui/Filters';
@@ -186,11 +186,17 @@ export default function App() {
   return (
     <div className={`app ${selected ? 'has-drawer' : ''}`}>
       <TopBar
-        onAdd={addByUrl}
+        onAdd={STATIC ? undefined : addByUrl}
         onSettings={() => setShowSettings(true)}
         onToggleFilters={() => setFiltersOpen((o) => !o)}
-        actions={<RefreshAll getListings={() => listingsRef.current} onUpdated={mergeFromServer} />}
+        actions={STATIC ? undefined : <RefreshAll getListings={() => listingsRef.current} onUpdated={mergeFromServer} />}
       />
+      {STATIC && (
+        <div className="banner note">
+          Published copy. Changes you make here stay in this browser and are replaced by the next deploy. Adding and
+          refreshing listings needs the local app.
+        </div>
+      )}
       {saveError && (
         <div className="banner error" role="alert">
           {saveError}
@@ -234,10 +240,14 @@ export default function App() {
             {listings.length === 0 ? (
               <div className="empty">
                 <h2>No listings yet</h2>
-                <p>
-                  Paste a property page URL into <strong>Add by URL</strong> at the top. HouseHunter reads that one page,
-                  scores it against your criteria, and puts it on the map.
-                </p>
+                {STATIC ? (
+                  <p>This published copy has no listings. Add them in the local app, then commit and push.</p>
+                ) : (
+                  <p>
+                    Paste a property page URL into <strong>Add by URL</strong> at the top. HouseHunter reads that one page,
+                    scores it against your criteria, and puts it on the map.
+                  </p>
+                )}
                 {import.meta.env.DEV && (
                   <button className="btn ghost" onClick={loadSample}>
                     Load sample data
@@ -276,7 +286,7 @@ export default function App() {
           busy={drawerBusy}
           error={drawerError}
           onPatch={patchSelected}
-          onRefresh={refreshSelected}
+          onRefresh={STATIC ? undefined : refreshSelected}
           onDelete={deleteSelected}
           onClose={() => setSelectedId(null)}
         />

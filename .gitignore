@@ -1,5 +1,5 @@
 node_modules
 dist
-# Personal data — local only
-data/listings.json
+# Saved page copies - local only. data/listings.json is committed so the
+# published copy (GitHub Pages) shows the same listings as the local app.
 research/fixtures/

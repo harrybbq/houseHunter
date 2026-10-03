@@ -2,7 +2,7 @@ import { useState, type FormEvent, type ReactNode } from 'react';
 import { HelpPopover } from './HelpPopover';
 
 interface Props {
-  onAdd: (url: string) => Promise<void>;
+  onAdd?: (url: string) => Promise<void>; // absent in the published copy, which has no server to fetch with
   onSettings: () => void;
   onToggleFilters: () => void;
   actions?: ReactNode;
@@ -16,7 +16,7 @@ export function TopBar({ onAdd, onSettings, onToggleFilters, actions }: Props) {
   const submit = async (e: FormEvent) => {
     e.preventDefault();
     const u = url.trim();
-    if (!u) return;
+    if (!u || !onAdd) return;
     setBusy(true);
     setErr(null);
     try {
@@ -40,7 +40,7 @@ export function TopBar({ onAdd, onSettings, onToggleFilters, actions }: Props) {
         </span>
         HouseHunter
       </div>
-      <form className="add" onSubmit={submit}>
+      <form className="add" onSubmit={submit} style={onAdd ? undefined : { visibility: 'hidden' }}>
         <div className="add-row">
           <input
             type="url"

@@ -10,6 +10,11 @@ npm run dev      # opens http://localhost:5190
 npm test         # parser + scoring tests
 ```
 
+## Published copy
+Every push to `master` builds a server-less copy and deploys it to GitHub Pages: https://harrybbq.github.io/houseHunter/
+
+It shows the listings committed in `data/listings.json`, so commit and push that file to update it. Verdicts and notes changed there are kept in that browser only and are replaced by the next deploy. Add by URL and Refresh need the local app.
+
 ## How it works
 - **Map + filters + list:** markers are coloured by tier (Perfect / Strong / Possible / Fails).
 - **Add by URL:** paste a Rightmove, Zoopla, OnTheMarket, s1homes or ESPC link. The local dev server fetches that one page, parses it and adds it. Pasting the same URL again refreshes it without losing your manual verdicts.
@@ -18,7 +23,7 @@ npm test         # parser + scoring tests
 - **Criteria:** thresholds, weights and areas live in `data/criteria.json`, and are editable in Settings.
 
 ## Data and privacy
-- Listings are saved to `data/listings.json` (gitignored). **Back up** with Settings → Export, or by copying that file.
+- Listings are saved to `data/listings.json`, which is committed and public. **Back up** with Settings → Export, or by copying that file.
 - Nothing is sent anywhere except the listing pages you ask it to fetch, plus OpenStreetMap map tiles.
 
 ## Site terms
